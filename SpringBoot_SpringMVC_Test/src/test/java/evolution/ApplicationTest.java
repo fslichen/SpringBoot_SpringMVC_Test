@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -32,8 +33,12 @@ public class ApplicationTest {
 	@Autowired
 	private TestRestTemplate restTemplate;
 	
+	@Value("${name}")
+	private String name;// Reads the properties from application.properties under test rather than main source folder.
+	
 	@Test
 	public void testPortNumber() {
+		System.out.println("The name attribute from application.properties = " + name);
 		System.out.println("The random server port number = " + port);
 	}
 	
